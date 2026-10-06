@@ -35,13 +35,17 @@ print('Tempo: ',fine - inizio)
 print('Tempo registrazione: ',fine_1 - inizio_1)
 print('Larray è lungo: ' ,len(data))
 
+
+default_speakers = sc.default_speaker()
+default_speakers.play(data/np.max(data), samplerate=48000)
+
 plt.figure(figsize = (14,9))
 x = np.arange(1, 480001)
-y = data
+y = data/np.max(data)
 
 plt.xlabel('Tempo(s)')
 plt.ylabel('Intensità')
 plt.title('Plot line')
-
+plt.grid()
 plt.plot(x/48000,y)
 plt.show()

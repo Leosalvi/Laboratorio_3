@@ -15,7 +15,7 @@ print('Microfoni disponibili: ', mics, '\n')
 default_mics = sc.default_microphone()
 print('Microfono scelto: ', default_mics, '\n')
 
-data = default_mics.record(samplerate=48000, numframes=48000)
+data = default_mics.record(samplerate=48000, numframes=480000)
 print('array acquisito: ')
 print(data)
 print('\n')
@@ -40,11 +40,16 @@ while True:
 
     try:
         data1 = conn.recv(4096) # we received this
-        
+        dimensione = len(vocale_array)
         if not data1:
             break
         print('Connesso?:', data1.decode())
-        conn.send(vocale_array)
+        conn.sendall(str(dimensione).encode())
+        
+        risposta = conn.recv(4096)
+        for i in range(0, len(vocale_array), 4096):
+            blocco = vocale_array[i:i + 4096]
+            conn.sendall(blocco)
     except socket.error:
         print("Error Occured.")
         break

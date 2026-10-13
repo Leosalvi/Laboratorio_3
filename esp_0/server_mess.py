@@ -9,8 +9,8 @@ port = 12345       # Arbitrary non-privileged port
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((host, port))
 
-vocale_array = pickle.dumps(data)
-
+vil = [(1,2,3,4,5)]
+array = pickle.dumps(vil)
 
 print("Host: ", host, ", Port: ", port)
 
@@ -18,19 +18,16 @@ s.listen(1)
 conn, addr = s.accept()
 
 while True:
-
     try:
         data1 = conn.recv(4096) # we received this
-        dimensione = len(vocale_array)
         if not data1:
             break
         print('Connesso?:', data1.decode())
-        conn.sendall(str(dimensione).encode())
+        conn.sendall(str('Adesso ti manderò un array va bene?').encode())
+        risp = conn.recv(4096)
+        print('Posso mandare?',risp.decode())
         
-        for i in range(0, len(vocale_array), 4096):
-            blocco = vocale_array[i:i + 4096]
-            conn.sendall(blocco)
-            
+        conn.sendall(array)
     except socket.error:
         print("Error Occured.")
         break

@@ -24,12 +24,12 @@ print('Larray è lungo: ' ,len(data))
 
 
 default_speakers = sc.default_speaker()
-default_speakers.play(data/np.max(data), samplerate=48000)
+default_speakers.play(data/np.max(abs(data)), samplerate=48000)
 
 plt.figure(figsize = (16,9))
-x = np.arange(1, 480001)
+x = np.arange(len(data))/48000
 y = data/np.max(abs(data))
-plt.plot(x/48000,y)
+plt.plot(x,y)
 
 plt.xlabel('Tempo[s]', fontsize = 15)
 plt.ylabel('Ampiezza digitale[adimens.]', fontsize = 15)

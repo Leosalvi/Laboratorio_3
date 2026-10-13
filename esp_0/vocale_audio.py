@@ -20,32 +20,20 @@ data = default_mics.record(samplerate=48000, numframes=480000)
 print('array acquisito: ')
 print(data)
 print('\n')
-
-fine = time.perf_counter()
-
-time.sleep(2)
-
-inizio_1 = time.perf_counter()
-
-#default_speakers.play(data/np.max(data), samplerate=48000)
-
-fine_1 = time.perf_counter()
-
-print('Tempo: ',fine - inizio)
-print('Tempo registrazione: ',fine_1 - inizio_1)
 print('Larray è lungo: ' ,len(data))
 
 
 default_speakers = sc.default_speaker()
 default_speakers.play(data/np.max(data), samplerate=48000)
 
-plt.figure(figsize = (14,9))
+plt.figure(figsize = (16,9))
 x = np.arange(1, 480001)
-y = data/np.max(data)
-
-plt.xlabel('Tempo(s)')
-plt.ylabel('Intensità')
-plt.title('Plot line')
-plt.grid()
+y = data/np.max(abs(data))
 plt.plot(x/48000,y)
+
+plt.xlabel('Tempo[s]', fontsize = 15)
+plt.ylabel('Ampiezza digitale[adimens.]', fontsize = 15)
+plt.title('Waveform audio registrato', fontsize = 25, pad = 20)
+plt.grid()
+plt.axhline(y=0, color='black', linewidth=1, linestyle='-')
 plt.show()

@@ -22,10 +22,10 @@ while True:
         data1 = conn.recv(4096) # we received this
         if not data1:
             break
-        print('Connesso?:', data1.decode())
+        print('Connesso?', 'client:[',data1.decode(),']')
         conn.sendall(str('Adesso ti manderò un array va bene?').encode())
         risp = conn.recv(4096)
-        print('Posso mandare?',risp.decode())
+        print('Posso mandare?','client:[',risp.decode(),']')
         
         conn.sendall(array)
     except socket.error:

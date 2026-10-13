@@ -28,18 +28,19 @@ while len(vocale) < dimensione:
 array_vocale_fin = pickle.loads(vocale)
 
 default_speakers = sc.default_speaker()
-default_speakers.play(array_vocale_fin/np.max(array_vocale_fin), samplerate=48000)
+#default_speakers.play(array_vocale_fin/np.max(array_vocale_fin), samplerate=48000)
 
 s.close()
 
-plt.figure(figsize = (14,9))
-x = np.arange(1, 480001)
-y = array_vocale_fin/np.max(np.abs(array_vocale_fin))
+plt.figure(figsize = (16,9))
+x = np.arange(len(array_vocale_fin))/48000
+y = array_vocale_fin/np.max(abs(array_vocale_fin))
+plt.plot(x,y)
 
-plt.xlabel('Tempo[s]')
-plt.ylabel('Intensità[]')
-plt.title('Plot line')
+plt.xlabel('Tempo[s]', fontsize = 15)
+plt.ylabel('Ampiezza digitale[adimens.]', fontsize = 15)
+plt.title('Waveform audio registrato', fontsize = 25, pad = 20)
 plt.grid()
-plt.plot(x/48000,y)
-plt.show()
+plt.axhline(y=0, color='black', linewidth=1, linestyle='-')
 
+plt.show()

@@ -15,7 +15,6 @@ s.connect((host, port))
 s.send('si'.encode())  # we send this string
 
 dimensione = int(s.recv(4096).decode())
-s.sendall('ok'.encode())
 
 vocale = b''
 
@@ -37,8 +36,8 @@ plt.figure(figsize = (14,9))
 x = np.arange(1, 480001)
 y = array_vocale_fin/np.max(np.abs(array_vocale_fin))
 
-plt.xlabel('Tempo(s)')
-plt.ylabel('Intensità')
+plt.xlabel('Tempo[s]')
+plt.ylabel('Intensità[]')
 plt.title('Plot line')
 plt.grid()
 plt.plot(x/48000,y)

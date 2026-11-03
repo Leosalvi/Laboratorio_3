@@ -39,7 +39,7 @@ plt.plot(x,y)
 
 plt.xlabel('Tempo[s]', fontsize = 15)
 plt.ylabel('Ampiezza digitale[adimens.]', fontsize = 15)
-plt.title('Waveform audio registrato', fontsize = 25, pad = 20)
+plt.title('Waveform audio inviato dal server', fontsize = 25, pad = 20)
 plt.grid()
 plt.axhline(y=0, color='black', linewidth=1, linestyle='-')
 
